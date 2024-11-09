@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import CustomThemeProvider from '@/components/CustomThemeProvider';
+import Header from '@/components/Header';
 
 const Montserrat = localFont({
-    src: './static/fonts/Montserrat-Regular.ttf',
+    src: './fonts/Montserrat-Regular.ttf',
     variable: '--font-montserrat-regular',
 });
 
@@ -19,7 +21,12 @@ export default function RootLayout({
 }>) {
     return (
         <html lang='en'>
-            <body className={`${Montserrat.variable}`}>{children}</body>
+            <body className={`${Montserrat.variable}`}>
+                <CustomThemeProvider>
+                    <Header />
+                    {children}
+                </CustomThemeProvider>
+            </body>
         </html>
     );
 }
